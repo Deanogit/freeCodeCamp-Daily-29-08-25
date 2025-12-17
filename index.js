@@ -1,4 +1,4 @@
-/// Candlelight
+// Candlelight
 // Given an integer representing the number of candles you start with, and an integer representing how many burned candles it takes to create a new one, return the number of candles you will have used after creating and burning as many as you can.
 
 // For example, if given 7 candles and it takes 2 burned candles to make a new one:
@@ -17,29 +17,36 @@ function burnCandles(candles, leftoversNeeded) {
   const mod = candles % leftoversNeeded;
   console.log(candles - mod);
 
-  let burned = candles;
-  let leftovers = 0;
+  let totalBurned = candles;
+  // let burned = candles;
+  let leftovers = candles;
   let newCandles = 0;
-  let recycled = 0;
+  // let recycled = 0;
 
-  for (let i = 0; i <= candles; i++) {
-    if (burned > 1) {
-      recycled = recycleCandles(burned);
-    }
+  // for (let i = 0; i <= candles; i++) {
+  while (leftovers >= leftoversNeeded) {
+    newCandles = Math.floor(leftovers / leftoversNeeded);
+    leftovers = leftovers % leftoversNeeded;
+    totalBurned += newCandles;
+    leftovers += newCandles;
   }
+
+  return totalBurned;
+
+  // }
   // return candles;
-  console.log(recycleCandles(7));
-  console.log(leftoversRemaining(7));
+  // console.log(recycleCandles(7))
+  // console.log(leftoversRemaining(7))
 
-  function recycleCandles(num) {
-    return Math.floor(num / leftoversNeeded);
-  }
+  // function recycleCandles(num) {
+  //  return Math.floor(num / leftoversNeeded)
+  // }
 
-  function leftoversRemaining(num) {
-    return num % leftoversNeeded;
-  }
+  // function leftoversRemaining(num) {
+  //  return num % leftoversNeeded;
+  // }
 
-  function countCandles(num) {
-    return;
-  }
+  // function countCandles(num){
+  // return
+  // }
 }
